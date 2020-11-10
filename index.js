@@ -61,12 +61,11 @@ app.get("/chapters/:id/:page/", async (req, res) => {
     res.send(return_data);
 });
 
-app.get("/pages/:name/:id/:chapter", (req, res) => {
+app.get("/pages/:name/:id", (req, res) => {
     const name = req.params.name;
     const id = req.params.id;
-    const chapter = req.params.chapter;
 
-    api.getPages(name, id, chapter).then((pages) => {
+    api.getPages(name, id).then((pages) => {
         res.send(pages);
     });
 });

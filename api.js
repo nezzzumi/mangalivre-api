@@ -60,26 +60,24 @@ function getChapters(id, page){
     })();
 }
 
-function getPages(name, release_id, chapter) {
-    return (async () => {
+async function getPages(name, release_id) {
+    const identifier = await (async () => {
         try {
-            let response = await got(`https://mangalivre.net/ler/${name}/online/${release_id}/capitulo-${chapter}/`);
+            let response = await got(`https://mangalivre.net/ler/${name}/online/${release_id}/capitulo-0/`);
             // retornando identifier
             return response.body.match(/(?<=this\.page\.identifier =\ \").*?(?=\";)/)[0];
         } catch (error) {
             console.log(error.message);
         }
-    })().then(async (identifier) => {
-        // retornando as imagens
-        return await (async () => {
-            try {
-                let response = await got(`https://mangalivre.net/leitor/pages/${release_id}.json?key=${identifier}`);
-                return response.body;
-            } catch (error) {
-                console.log(error.message);
-            }
-        })();
-    });
+    })();
+    return await (async () => {
+        try {
+            let response = await got(`https://mangalivre.net/leitor/pages/${release_id}.json?key=${identifier}`);
+            return response.body;
+        } catch (error) {
+            console.log(error.message);
+        }
+    })();
 }
 
 module.exports = {
