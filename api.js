@@ -1,6 +1,7 @@
 const got = require('got');
 
 function search(name){
+    var return_data = { "series": [] };
     const form = "search="+name;
     return (async () => {
         try {
@@ -14,8 +15,21 @@ function search(name){
             }
             );
 
-            return response.body;
-
+            for (const serie of JSON.parse(response.body).series) {
+              return_data.series.push({
+                  "id_serie": serie.id_serie,
+                  "name": serie.name,
+                  "label": serie.label,
+                  "score": serie.score,
+                  "value": serie.value,
+                  "author": serie.author,
+                  "artist": serie.artist,
+                  "categories": serie.categories.map((categorie) => {return {"name": categorie.name, "id_category": categorie.id_category};}),
+                }
+              );
+            }
+            
+            return return_data;
         } catch (error) {
             console.log(error.message);
         }
