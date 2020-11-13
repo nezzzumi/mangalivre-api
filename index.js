@@ -70,6 +70,26 @@ app.get("/pages/:name/:id", (req, res) => {
     });
 });
 
+app.get("/genres/", (_req, res) => {
+    api.getGenres().then((response) => {
+        res.send(response);
+    });
+});
+
+// app.get("/recents", (req, res) => {
+//     const page = req.params.page;
+//     api.getRecents(page).then((response) => {
+//         res.send(response);
+//     });
+// });
+
+app.get("/recents/:page", (req, res) => {
+    const page = req.params.page;
+    api.getRecents(page).then((response) => {
+        res.send(response);
+    });
+});
+
 app.listen(port, () => {
     console.log(`Running at http://localhost:${port}/`);
 });

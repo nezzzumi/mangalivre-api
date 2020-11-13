@@ -67,7 +67,7 @@ function getChapters(id, page){
             
 
         } catch (error) {
-            console.log(error.message);
+            console.error(error.message);
         }
 
         return return_data;
@@ -94,8 +94,67 @@ async function getPages(name, release_id) {
     })();
 }
 
+function getGenres(){
+    var return_data = {"genres": []};
+    return (async () => {
+        try {
+            let response = await got('https://mangalivre.net/categories/categories_list.json');
+            response = JSON.parse(response.body);
+            
+            for(let genre of response.categories_list) {
+                return_data.genres.push({
+                    "id": genre.id_category,
+                    "name": genre.name,
+                    "titles": genre.titles,
+                    "link": genre.link,
+                });
+            }
+        } catch (error) {
+            console.error(error.message);
+        }
+
+        return return_data;
+    })();
+}
+
+function getRecents(page){
+    var return_data = {"mangas": []};
+    return (async () => {
+        try {
+            let response = await got('https://mangalivre.net/series/index/atualizacoes?page='+page);
+            response = response.body.replace(/(\r\n|\n|\r)/gm, "");
+            // li tags
+            let lis = response.match(new RegExp('\<li\> *\<a href=\"\/manga\/.*?\<\/div\>\ *\<\/a\>\ *\<\/li\>', "gm"));
+            
+            for(let li of lis){
+                let manga = {};
+                manga.name = li.match(/(?<=series-title......).*?(?=<\/h1>)/gm)[0].trim();
+                manga.link = li.match(/(?<=\<a href=\").*?(?=" )/gm)[0].trim();
+                manga.chapters = li.match(/(?<=number of chapters">).*?(?=<\/span>)/gm)[0].trim();
+                manga.image = li.match(/(?<=background-image: url\(\').*?(?=\')/gm)[0].trim();
+                manga.rate = li.match(/(?<=class="nota">)....(?=<\/span>)/gm)[0].trim();
+                let categories = li.match(/(?<="touch-carousel-item.*<span class="nota">).*?(?=<\/span>)/gm);
+                if(categories){
+                    manga.categories = categories.map(genre => {
+                        return genre;
+                    });
+                }
+                return_data.mangas.push(manga);
+            }
+
+        } catch (error) {
+            console.error(error.message);
+        }
+
+        return return_data;
+    })();
+
+}
+
 module.exports = {
     search: search,
     getChapters: getChapters,
     getPages: getPages,
+    getGenres: getGenres,
+    getRecents: getRecents
 }
