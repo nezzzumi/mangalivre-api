@@ -1,6 +1,6 @@
 # Resumo
 
-Uma simples API de mangás que tem o mangalivre como source. Feita em Node.js, usando Express.js.
+Uma simples API de mangás que tem o mangá livre como source. Feita em Node.js, usando Express.js.
 
 
 `api.js` é o arquivo que contém as funções que extraem os dados do site.
