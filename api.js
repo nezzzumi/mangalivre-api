@@ -104,10 +104,10 @@ function getChapters(id, page) {
 }
 
 
-async function getPages(name, release_id) {
+async function getPages(release_id) {
     const identifier = await (async () => {
         try {
-            let response = await got(`https://mangalivre.net/ler/${name}/online/${release_id}/capitulo-0/`);
+            let response = await got(`https://mangalivre.net/ler/null/online/${release_id}/capitulo-0/`);
             // retornando identifier
             return response.body.match(/(?<=this\.page\.identifier =\ \").*?(?=\";)/)[0];
         } catch (error) {
