@@ -12,6 +12,7 @@ function parseManga(html) {
         manga.author = li.match(/(?<=<span class="series-author">).*?(?=<\/span>)/gm)[0].trim().replace(/\<i.*<\/i>/gm, "").replace(/(\ \ )*/gm, "").replace(/&/, " & ");
         manga.description = li.match(/(?<=<span class="series-desc">).*?(?=<\/span>)/gm)[0].trim();
         manga.link = li.match(/(?<=\<a href=\").*?(?=" )/gm)[0].trim();
+        manga.id = manga.link.replace(/.*\//gm, "");
         manga.chapters = li.match(/(?<=number of chapters">).*?(?=<\/span>)/gm)[0].trim();
         manga.image = li.match(/(?<=background-image: url\(\').*?(?=\')/gm)[0].trim();
         manga.rate = li.match(/(?<=class="nota">)....(?=<\/span>)/gm)[0].trim();
@@ -51,8 +52,7 @@ function search(name) {
                     "author": serie.author,
                     "artist": serie.artist,
                     "categories": serie.categories.map((categorie) => { return { "name": categorie.name, "id_category": categorie.id_category }; }),
-                }
-                );
+                });
             }
 
             return return_data;
