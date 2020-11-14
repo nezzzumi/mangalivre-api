@@ -55,6 +55,7 @@ function search(name) {
                     "value": serie.value,
                     "author": serie.author,
                     "artist": serie.artist,
+                    "cover": serie.cover,
                     "categories": serie.categories.map((categorie) => { return { "name": categorie.name, "id_category": categorie.id_category }; }),
                 });
             }

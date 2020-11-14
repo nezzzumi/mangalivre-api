@@ -50,6 +50,7 @@ No exemplo, irei buscar por "i sold".
       "value":"Jumyou wo Kaitotte Moratta. Ichinen ni Tsuki, Ichimanen de. Mikkakan no Koufuku;Three Days of Happiness;I sold my life for ten thousand yen per year.;寿命を買い取ってもらった。一年につき、一万円で。",
       "author":"Miaki, Sugaru",
       "artist":"Taguchi, Shouichi",
+      "cover":"https://static3.mangalivre.com/capas/F90r_Di84p1K4x75frSw8A/7203/external_cover.jpg?quality=100",
       "categories":[
         {
           "name":"Drama",
