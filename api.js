@@ -75,7 +75,6 @@ function getChapters(id, page) {
             let response = await got(`https://mangalivre.net/series/chapters_list.json?page=${page}&id_serie=${id}`, {
                 headers: {
                     "x-requested-with": "XMLHttpRequest",
-                    //"content-length" : Buffer.byteLength(form),
                     "content-type": "application/x-www-form-urlencoded",
                 },
             });

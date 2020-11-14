@@ -25,7 +25,8 @@ app.get("/chapters/:id/", async (req, res) => {
 
     for (let i = 1; ; i++) {
         var result = await api.getChapters(id, i);
-        if (!return_data.name) { // checa se ja as infos ja foram adicionados para evitar ficar reescrevendo os valores
+        // checa se as infos ja foram adicionados para evitar ficar reescrevendo os valores
+        if (!return_data.name) { 
             return_data.id_serie = result.id_serie;
             return_data.url_name = result.url_name;
             return_data.name = result.name;
@@ -55,7 +56,8 @@ app.get("/chapters/:id/:page/", async (req, res) => {
 
     return_data.chapters = result.chapters;
 
-    if (!return_data.name) { // checa se ja as infos ja foram adicionados para evitar ficar reescrevendo os valores
+    // checa se as infos ja foram adicionados para evitar ficar reescrevendo os valores
+    if (!return_data.name) { 
         return_data.id_serie = result.id_serie;
         return_data.url_name = result.url_name;
         return_data.name = result.name;
