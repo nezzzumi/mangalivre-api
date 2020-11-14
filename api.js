@@ -1,12 +1,12 @@
 const got = require('got');
 
-function parseManga(html){
+function parseManga(html) {
     let mangas = [];
     html = html.replace(/(\r\n|\n|\r)/gm, "");
     // li tags
     let lis = html.match(new RegExp('<li> *<a href="\/manga\/.*?\<\/div\>\ *<\/a\>\ *<\/li>', "gm"));
-    
-    for(let li of lis){
+
+    for (let li of lis) {
         let manga = {};
         manga.name = li.match(/(?<=series-title......).*?(?=<\/h1>)/gm)[0].trim();
         manga.author = li.match(/(?<=<span class="series-author">).*?(?=<\/span>)/gm)[0].trim().replace(/\<i.*<\/i>/gm, "").replace(/(\ \ )*/gm, "").replace(/&/, " & ");
@@ -16,7 +16,7 @@ function parseManga(html){
         manga.image = li.match(/(?<=background-image: url\(\').*?(?=\')/gm)[0].trim();
         manga.rate = li.match(/(?<=class="nota">)....(?=<\/span>)/gm)[0].trim();
         let categories = li.match(/(?<="touch-carousel-item.*<span class="nota">).*?(?=<\/span>)/gm);
-        if(categories){
+        if (categories) {
             manga.categories = categories.map(genre => {
                 return genre;
             });
@@ -26,9 +26,9 @@ function parseManga(html){
     return mangas;
 }
 
-function search(name){
+function search(name) {
     var return_data = { "series": [] };
-    const form = "search="+name;
+    const form = "search=" + name;
     return (async () => {
         try {
             let response = await got.post(
@@ -42,19 +42,19 @@ function search(name){
             );
 
             for (const serie of JSON.parse(response.body).series) {
-              return_data.series.push({
-                  "id_serie": serie.id_serie,
-                  "name": serie.name,
-                  "label": serie.label,
-                  "score": serie.score,
-                  "value": serie.value,
-                  "author": serie.author,
-                  "artist": serie.artist,
-                  "categories": serie.categories.map((categorie) => {return {"name": categorie.name, "id_category": categorie.id_category};}),
+                return_data.series.push({
+                    "id_serie": serie.id_serie,
+                    "name": serie.name,
+                    "label": serie.label,
+                    "score": serie.score,
+                    "value": serie.value,
+                    "author": serie.author,
+                    "artist": serie.artist,
+                    "categories": serie.categories.map((categorie) => { return { "name": categorie.name, "id_category": categorie.id_category }; }),
                 }
-              );
+                );
             }
-            
+
             return return_data;
         } catch (error) {
             console.log(error.message);
@@ -62,7 +62,7 @@ function search(name){
     })();
 }
 
-function getChapters(id, page){
+function getChapters(id, page) {
     var return_data = { "chapters": [] };
 
     return (async () => {
@@ -90,7 +90,7 @@ function getChapters(id, page){
                     });
                 }
             }
-            
+
 
         } catch (error) {
             console.error(error.message);
@@ -120,14 +120,14 @@ async function getPages(name, release_id) {
     })();
 }
 
-function getGenres(){
-    var return_data = {"genres": []};
+function getGenres() {
+    var return_data = { "genres": [] };
     return (async () => {
         try {
             let response = await got('https://mangalivre.net/categories/categories_list.json');
             response = JSON.parse(response.body);
-            
-            for(let genre of response.categories_list) {
+
+            for (let genre of response.categories_list) {
                 return_data.genres.push({
                     "id": genre.id_category,
                     "name": genre.name,
@@ -143,11 +143,11 @@ function getGenres(){
     })();
 }
 
-function getRecents(page){
-    var return_data = {"mangas": []};
+function getRecents(page) {
+    var return_data = { "mangas": [] };
     return (async () => {
         try {
-            let response = await got('https://mangalivre.net/series/index/atualizacoes?page='+page);
+            let response = await got('https://mangalivre.net/series/index/atualizacoes?page=' + page);
             return_data.mangas = parseManga(response.body);
         } catch (error) {
             console.error(error.message);
@@ -156,17 +156,30 @@ function getRecents(page){
     })();
 }
 
-function getPopular(page){
-    var return_data = {"mangas": []};
+function getPopular(page) {
+    var return_data = { "mangas": [] };
     return (async () => {
         try {
-            let response = await got("https://mangalivre.net/series/index/numero-de-leituras/todos/desde-o-comeco?page="+page);
+            let response = await got("https://mangalivre.net/series/index/numero-de-leituras/todos/desde-o-comeco?page=" + page);
             return_data.mangas = parseManga(response.body);
         } catch (error) {
-            console.log(error.message);
+            console.error(error.message);
         }
         return return_data;
     })();
+}
+
+function getBests(page) {
+    var return_data = { "mangas": [] };
+    return (async () => {
+        try {
+            let response = await got("https://mangalivre.net/series/index/nota?page="+page);
+            return_data = parseManga(response.body);
+        } catch (error) {
+            console.error(error.message);
+        }
+        return return_data;
+    });
 }
 
 module.exports = {
@@ -175,5 +188,6 @@ module.exports = {
     getPages: getPages,
     getGenres: getGenres,
     getRecents: getRecents,
-    getPopular: getPopular
+    getPopular: getPopular,
+    getBests: getBests
 }
