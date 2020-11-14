@@ -65,10 +65,9 @@ app.get("/chapters/:id/:page/", async (req, res) => {
 });
 
 app.get("/pages/:id", (req, res) => {
-    const name = req.params.name;
     const id = req.params.id;
 
-    api.getPages(name, id).then((pages) => {
+    api.getPages(id).then((pages) => {
         res.send(pages);
     });
 });
