@@ -3,11 +3,13 @@ const got = require('got');
 function parseManga(html) {
     let mangas = [];
     html = html.replace(/(\r\n|\n|\r)/gm, "");
+    
     // li tags
     let lis = html.match(new RegExp('<li> *<a href="\/manga\/.*?\<\/div\>\ *<\/a\>\ *<\/li>', "gm"));
 
     for (let li of lis) {
         let manga = {};
+        
         manga.name = li.match(/(?<=series-title......).*?(?=<\/h1>)/gm)[0].trim();
         manga.author = li.match(/(?<=<span class="series-author">).*?(?=<\/span>)/gm)[0].trim().replace(/\<i.*<\/i>/gm, "").replace(/(\ \ )*/gm, "").replace(/&/, " & ");
         manga.description = li.match(/(?<=<span class="series-desc">).*?(?=<\/span>)/gm)[0].trim();
@@ -16,6 +18,7 @@ function parseManga(html) {
         manga.chapters = li.match(/(?<=number of chapters">).*?(?=<\/span>)/gm)[0].trim();
         manga.image = li.match(/(?<=background-image: url\(\').*?(?=\')/gm)[0].trim();
         manga.rate = li.match(/(?<=class="nota">)....(?=<\/span>)/gm)[0].trim();
+        
         let categories = li.match(/(?<="touch-carousel-item.*<span class="nota">).*?(?=<\/span>)/gm);
         if (categories) {
             manga.categories = categories.map(genre => {
@@ -27,9 +30,11 @@ function parseManga(html) {
     return mangas;
 }
 
+
 function search(name) {
     var return_data = { "series": [] };
     const form = "search=" + name;
+    
     return (async () => {
         try {
             let response = await got.post(
@@ -39,8 +44,7 @@ function search(name) {
                     "x-requested-with": "XMLHttpRequest",
                     "content-type": "application/x-www-form-urlencoded",
                 },
-            }
-            );
+            });
 
             for (const serie of JSON.parse(response.body).series) {
                 return_data.series.push({
@@ -61,6 +65,7 @@ function search(name) {
         }
     })();
 }
+
 
 function getChapters(id, page) {
     var return_data = { "chapters": [] };
@@ -90,8 +95,6 @@ function getChapters(id, page) {
                     });
                 }
             }
-
-
         } catch (error) {
             console.error(error.message);
         }
@@ -99,6 +102,7 @@ function getChapters(id, page) {
         return return_data;
     })();
 }
+
 
 async function getPages(name, release_id) {
     const identifier = await (async () => {
@@ -110,6 +114,7 @@ async function getPages(name, release_id) {
             console.log(error.message);
         }
     })();
+
     return await (async () => {
         try {
             let response = await got(`https://mangalivre.net/leitor/pages/${release_id}.json?key=${identifier}`);
@@ -120,8 +125,10 @@ async function getPages(name, release_id) {
     })();
 }
 
+
 function getGenres() {
     var return_data = { "genres": [] };
+
     return (async () => {
         try {
             let response = await got('https://mangalivre.net/categories/categories_list.json');
@@ -145,6 +152,7 @@ function getGenres() {
 
 function getRecents(page) {
     var return_data = { "mangas": [] };
+
     return (async () => {
         try {
             let response = await got('https://mangalivre.net/series/index/atualizacoes?page=' + page);
@@ -156,8 +164,10 @@ function getRecents(page) {
     })();
 }
 
+
 function getPopular(page) {
     var return_data = { "mangas": [] };
+
     return (async () => {
         try {
             let response = await got("https://mangalivre.net/series/index/numero-de-leituras/todos/desde-o-comeco?page=" + page);
@@ -169,8 +179,10 @@ function getPopular(page) {
     })();
 }
 
-function getBests(page) {
+
+function getTop(page) {
     var return_data = { "mangas": [] };
+
     return (async () => {
         try {
             let response = await got("https://mangalivre.net/series/index/nota?page="+page);
@@ -179,7 +191,7 @@ function getBests(page) {
             console.error(error.message);
         }
         return return_data;
-    });
+    })();
 }
 
 module.exports = {
@@ -189,5 +201,5 @@ module.exports = {
     getGenres: getGenres,
     getRecents: getRecents,
     getPopular: getPopular,
-    getBests: getBests
+    getTop: getTop
 }

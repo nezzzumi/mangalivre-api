@@ -1,4 +1,4 @@
-    const express = require('express');
+const express = require('express');
 const api = require("./api");
 const app = express();
 const port = 8080;
@@ -101,15 +101,15 @@ app.get("/popular/:page", (req, res) => {
     });
 });
 
-app.get("/bests/:page", (req, res) => {
+app.get("/top/:page", (req, res) => {
     const page = req.params.page;
-    api.getPopular(page).then((response) => {
+    api.getTop(page).then((response) => {
         res.send(response);
     });
 });
 
-app.get("/bests/", async (_req, res) => {
-    res.redirect("/bests/1");
+app.get("/top/", async (_req, res) => {
+    res.redirect("/top/1");
 });
 
 app.get('*', (req, res) => {
