@@ -186,7 +186,7 @@ function getTop(page) {
     return (async () => {
         try {
             let response = await got("https://mangalivre.net/series/index/nota?page="+page);
-            return_data = parseManga(response.body);
+            return_data.mangas = parseManga(response.body);
         } catch (error) {
             console.error(error.message);
         }
