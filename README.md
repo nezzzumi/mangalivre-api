@@ -633,11 +633,11 @@ No exemplo, usarei o id_release de um capítulo retornado no exemplo do tópico 
 
 ### Request
 
-`GET /recents/:page` para listar mangás com lançamentos recentes de capítulo. Quanto menor o número da página, mais recentes serão.
+`GET /recents/:page` para listar mangás com capítulos lançados recentemente. Quanto menor o número da página, mais recentes serão.
 
 ou
 
-`GET /recents` para listar os 30 mangás com lançamentos de capítulo mais recentes. (redirecionamento para `/recents/1`)
+`GET /recents` para listar os 30 mangás com capítulos mais recentes. <b>Obs.</b> redirecionamento para `/recents/1`
 
 ### Response
 <details>
@@ -1149,7 +1149,7 @@ ou
 
 ou
 
-`GET /popular` para listar os 30 mangás mais populares. (redirecionamento para `/popular/1`)
+`GET /popular` para listar os 30 mangás mais populares. <b>Obs.</b> redirecionamento para `/popular/1`
 
 ### Response
 
@@ -1699,7 +1699,7 @@ ou
 
 ou
 
-`GET /top/` para listar os 30 mangás mais bem avaliados. (redirecionamento para `/top/1`)
+`GET /top/` para listar os 30 mangás mais bem avaliados. <b>Obs.</b> redirecionamento para `/top/1`
 
 ### Response
 
