@@ -23,7 +23,7 @@ app.get("/chapters/:id/", async (req, res) => {
         "chapters": []
     };
 
-    for (let i = 0; ; i++) {
+    for (let i = 1; ; i++) {
         var result = await api.getChapters(id, i);
         if (!return_data.name) { // checa se ja as infos ja foram adicionados para evitar ficar reescrevendo os valores
             return_data.id_serie = result.id_serie;
