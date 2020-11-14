@@ -30,7 +30,7 @@ Alguns exemplos de uso da API.
 
 ## Busca
 
-No exemplo irei buscar por "i sold".
+No exemplo, irei buscar por "i sold".
 
 
 ### Request
@@ -67,7 +67,7 @@ No exemplo irei buscar por "i sold".
 
 ## Listar capítulos
 
-No exemplo usarei o id retornado na busca do tópico anterior, que é <b>7203</b>.
+No exemplo, usarei o id retornado na busca do tópico anterior, que é <b>7203</b>.
 
 ### Request
 
@@ -203,7 +203,7 @@ ou
     
 ## Listar páginas de um capítulo
 
-Nesse exemplo usarei o id_release de um capítulo retornado no exemplo do tópico anterior, que é <b>162345</b>.
+No exemplo, usarei o id_release de um capítulo retornado no exemplo do tópico anterior, que é <b>162345</b>.
 
 ### Request 
 
