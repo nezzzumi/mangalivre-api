@@ -3,4 +3,4 @@ build
 npm-debug.log
 .env
 .DS_Store
-workspace.code-workspace
+mangalivre.code-workspace
