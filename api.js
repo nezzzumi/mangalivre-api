@@ -15,9 +15,9 @@ function parseManga(html) {
         manga.description = li.match(/(?<=<span class="series-desc">).*?(?=<\/span>)/gm)[0].trim();
         manga.link = li.match(/(?<=\<a href=\").*?(?=" )/gm)[0].trim();
         manga.id = manga.link.replace(/.*\//gm, "");
-        manga.chapters = li.match(/(?<=number of chapters">).*?(?=<\/span>)/gm)[0].trim();
+        manga.chapters_count = li.match(/(?<=number of chapters">).*?(?=<\/span>)/gm)[0].trim();
         manga.image = li.match(/(?<=background-image: url\(\').*?(?=\')/gm)[0].trim();
-        manga.rate = li.match(/(?<=class="nota">)....(?=<\/span>)/gm)[0].trim();
+        manga.score = li.match(/(?<=class="nota">)....(?=<\/span>)/gm)[0].trim();
         
         let categories = li.match(/(?<="touch-carousel-item.*<span class="nota">).*?(?=<\/span>)/gm);
         if (categories) {
@@ -55,7 +55,7 @@ function search(name) {
                     "value": serie.value,
                     "author": serie.author,
                     "artist": serie.artist,
-                    "cover": serie.cover,
+                    "image": serie.cover,
                     "categories": serie.categories.map((categorie) => { return { "name": categorie.name, "id_category": categorie.id_category }; }),
                 });
             }
