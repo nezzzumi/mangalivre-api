@@ -32,7 +32,7 @@ function parseManga(html) {
 
 
 function search(name) {
-    var return_data = { "series": [] };
+    var return_data = { "mangas": [] };
     const form = "search=" + name;
     
     return (async () => {
@@ -47,7 +47,7 @@ function search(name) {
             });
 
             for (const serie of JSON.parse(response.body).series) {
-                return_data.series.push({
+                return_data.mangas.push({
                     "id_serie": serie.id_serie,
                     "name": serie.name,
                     "label": serie.label,
