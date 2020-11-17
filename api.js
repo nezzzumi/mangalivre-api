@@ -12,7 +12,7 @@ function parseManga(html) {
         
         manga.name = li.match(/(?<=series-title......).*?(?=<\/h1>)/gm)[0].trim();
         manga.author = li.match(/(?<=<span class="series-author">).*?(?=<\/span>)/gm)[0].trim().replace(/\<i.*<\/i>/gm, "").replace(/(\ \ )*/gm, "").replace(/&/, " & ");
-        manga.description = li.match(/(?<=<span class="series-desc">).*?(?=<\/span>)/gm)[0].trim().replace(/<(\/|)(br|a|b)(\/|)>/gm, ""); 
+        manga.description = li.match(/(?<=<span class="series-desc">).*?(?=<\/span>)/gm)[0].trim().replace(/<(\/|)(br|a|b)(\/|)>/gm, "").replace(/&nbsp;/gm, " "); 
         manga.link = li.match(/(?<=\<a href=\").*?(?=" )/gm)[0].trim();
         manga.id = manga.link.replace(/.*\//gm, "");
         manga.chapters_count = li.match(/(?<=number of chapters">).*?(?=<\/span>)/gm)[0].trim();
