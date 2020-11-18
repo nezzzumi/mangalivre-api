@@ -114,6 +114,13 @@ app.get("/top/", async (_req, res) => {
     res.redirect("/top/1");
 });
 
+app.get("/manga/:id", async(req, res) => {
+    const id = req.params.id;
+    api.getMangaById(id).then((response) => {
+        res.send(response);
+    });
+});
+
 app.get('*', (req, res) => {
     res.header("401");
     res.render("html/401.html");

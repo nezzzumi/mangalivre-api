@@ -1686,3 +1686,27 @@ ou
 </p>
 </details>
 
+## Listar informações de um mangá pelo seu id
+No exemplo, usarei o id 1, que é o id do mangá Naruto.
+
+### Request
+`GET /manga/:id` para listar as informações do mangá.
+
+### Response
+```json
+{
+  "name":"Naruto",
+  "author":"Kishimoto, Masashi",
+  "description":"Naruto Uzumaki é um menino que vive em Konohagakure no Sato ou simplesmente Konoha ou Vila Oculta da Folha, a vila ninja do País do Fogo. Quando ainda bebê, Naruto teve aprisionada em seu corpo a Kyuubi no Youko por Minato Namikaze (quarto Hokage, e seu pai), com a finalidade de salvar a Vila da Folha. Desde então, Naruto é visto por muitas pessoas como um monstro, não só pelos familiares das pessoas mortas pela Kyuubi, mas também por pessoas que não toleram suas brincadeiras, já que o mesmo é extremamente hiperativo, incompreendido e solitário. Naruto sonha em se tornar o Hokage de sua vila, um ninja poderoso e respeitado, para assim poder ser reconhecido por todos.",
+  "chapters_count":"718",
+  "image":"https://static3.mangalivre.com/capas/EjvoRCrtbg8u15ewyND_4g/1/5f8b2f63f1b70external_cover.jpg?quality=100",
+  "score":"8.96",
+  "categories":[
+    "Ação",
+    "Artes Marciais",
+    "Aventura",
+    "Shounen",
+    "Super Poderes"
+  ]
+}
+```

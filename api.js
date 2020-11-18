@@ -1,6 +1,27 @@
 const got = require('got');
 
-function parseManga(html) {
+function parseManga(html){
+    let manga = {};
+    html = html.replace(/(\r\n|\n|\r)/gm, "");
+    let series_desc_div = html.match(/(<div id="series-desc").*(?=<div id="chapter-list")/gm)[0].trim();
+
+    manga.name = series_desc_div.match(/(?<=series-info touchcarousel.*<h1>).*?(?=<\/h1>)/gm).slice(-1)[0].trim();
+    manga.author = series_desc_div.match(/(?<=id="series-data".*?<span class="series-author">).*?(?=<\/span)/gm).slice(-1)[0].trim().replace(/<i.*?<\/i>/gm, "").replace(/<a.*<\/a>/gm, "").trim();
+    manga.description = series_desc_div.match(/(?<=<span class="series-desc">.*?span>).*?(?=<\/span>.*?<ol)/gm)[0].trim().replace(/<br>/gm, "").trim();
+    manga.chapters_count = html.match(/(?<=id="chapter-list".*layout\/number-chapters.*?<span>).*?(?=<\/span>)/gm)[0].trim();
+    manga.image = series_desc_div.match(/(?<=div class=\"cover\"> *?<img src=").*?(quality=100)/gm)[0].trim();
+    manga.score = series_desc_div.match(/(?<=<div class="score-number">).*?(?=<\/div>)/gm)[0].trim();
+    let categories = series_desc_div.match(/(?<=ul class="tags touchcarousel-container".*?Categoria de mangás: ).*?(?=")/gm);
+    if (categories) {
+        manga.categories = categories.map(genre => {
+            return genre;
+        });
+    }
+    
+    return manga;
+}
+
+function parseResults(html) {
     let mangas = [];
     html = html.replace(/(\r\n|\n|\r)/gm, "");
     
@@ -40,7 +61,7 @@ function search(name) {
                 `https://mangalivre.net/series/index/nome/${name}?page=1`, {
             });
 
-            return_data.mangas = parseManga(response.body);
+            return_data.mangas = parseResults(response.body);
 
             return return_data;
         } catch (error) {
@@ -138,7 +159,7 @@ function getRecents(page) {
     return (async () => {
         try {
             let response = await got('https://mangalivre.net/series/index/atualizacoes?page=' + page);
-            return_data.mangas = parseManga(response.body);
+            return_data.mangas = parseResults(response.body);
         } catch (error) {
             console.error(error.message);
         }
@@ -153,7 +174,7 @@ function getPopular(page) {
     return (async () => {
         try {
             let response = await got("https://mangalivre.net/series/index/numero-de-leituras/todos/desde-o-comeco?page=" + page);
-            return_data.mangas = parseManga(response.body);
+            return_data.mangas = parseResults(response.body);
         } catch (error) {
             console.error(error.message);
         }
@@ -168,11 +189,25 @@ function getTop(page) {
     return (async () => {
         try {
             let response = await got("https://mangalivre.net/series/index/nota?page="+page);
-            return_data.mangas = parseManga(response.body);
+            return_data.mangas = parseResults(response.body);
         } catch (error) {
             console.error(error.message);
         }
         return return_data;
+    })();
+}
+
+function getMangaById(id) {
+    var manga = {"id": id, "link": "https://mangalivre.net/manga/null/"+id};
+    
+    return (async () => {
+        try {
+            let response = await got(manga.link);
+            manga = parseManga(response.body);
+        } catch (error) {
+            console.error(error.message);
+        }
+        return manga;
     })();
 }
 
@@ -183,5 +218,6 @@ module.exports = {
     getGenres: getGenres,
     getRecents: getRecents,
     getPopular: getPopular,
-    getTop: getTop
+    getTop: getTop,
+    getMangaById: getMangaById,
 }
