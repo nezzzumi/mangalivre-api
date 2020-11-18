@@ -1,11 +1,13 @@
 const got = require('got');
 
-function parseManga(html){
+function parseManga(html, id){
     let manga = {};
     html = html.replace(/(\r\n|\n|\r)/gm, "");
     let series_desc_div = html.match(/(<div id="series-desc").*(?=<div id="chapter-list")/gm)[0].trim();
 
     manga.name = series_desc_div.match(/(?<=series-info touchcarousel.*<h1>).*?(?=<\/h1>)/gm).slice(-1)[0].trim();
+    manga.id = id;
+    manga.link = "https://mangalivre.net/manga/id/"+id;
     manga.author = series_desc_div.match(/(?<=id="series-data".*?<span class="series-author">).*?(?=<\/span)/gm).slice(-1)[0].trim().replace(/<i.*?<\/i>/gm, "").replace(/<a.*<\/a>/gm, "").trim();
     manga.description = series_desc_div.match(/(?<=<span class="series-desc">.*?span>).*?(?=<\/span>.*?<ol)/gm)[0].trim().replace(/<br>/gm, "").trim();
     manga.chapters_count = html.match(/(?<=id="chapter-list".*layout\/number-chapters.*?<span>).*?(?=<\/span>)/gm)[0].trim();
@@ -198,16 +200,16 @@ function getTop(page) {
 }
 
 function getMangaById(id) {
-    var manga = {"id": id, "link": "https://mangalivre.net/manga/null/"+id};
+    var return_data  = {"manga": {}};
     
     return (async () => {
         try {
-            let response = await got(manga.link);
-            manga = parseManga(response.body);
+            let response = await got("https://mangalivre.net/manga/null/"+id);
+            return_data.manga = parseManga(response.body, id);
         } catch (error) {
             console.error(error.message);
         }
-        return manga;
+        return return_data;
     })();
 }
 
