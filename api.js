@@ -9,7 +9,7 @@ function parseManga(html, id){
     manga.id = id;
     manga.link = "https://mangalivre.net/manga/id/"+id;
     manga.author = series_desc_div.match(/(?<=id="series-data".*?<span class="series-author">).*?(?=<\/span)/gm).slice(-1)[0].trim().replace(/<i.*?<\/i>/gm, "").replace(/<a.*<\/a>/gm, "").trim();
-    manga.description = series_desc_div.match(/(?<=<span class="series-desc">.*?span>).*?(?=<\/span>.*?<ol)/gm)[0].trim().replace(/<br>/gm, "").trim();
+    manga.description = series_desc_div.match(/(?<=<span class="series-desc">.*?span>).*?(?=<\/span>.*?<ol)/gm)[0].trim().replace(/<br>/gm, "").trim().replace(/<(\/|)(br|a|b|span)(\/|)>/gm, "").replace(/&nbsp;/gm, " ");;
     manga.chapters_count = html.match(/(?<=id="chapter-list".*layout\/number-chapters.*?<span>).*?(?=<\/span>)/gm)[0].trim();
     manga.image = series_desc_div.match(/(?<=div class=\"cover\"> *?<img src=").*?(quality=100)/gm)[0].trim();
     manga.score = series_desc_div.match(/(?<=<div class="score-number">).*?(?=<\/div>)/gm)[0].trim();
@@ -35,7 +35,7 @@ function parseResults(html) {
         
         manga.name = li.match(/(?<=series-title......).*?(?=<\/h1>)/gm)[0].trim();
         manga.author = li.match(/(?<=<span class="series-author">).*?(?=<\/span>)/gm)[0].trim().replace(/\<i.*<\/i>/gm, "").replace(/(\ \ )*/gm, "").replace(/&/, " & ");
-        manga.description = li.match(/(?<=<span class="series-desc">).*?(?=<\/span>)/gm)[0].trim().replace(/<(\/|)(br|a|b)(\/|)>/gm, "").replace(/&nbsp;/gm, " "); 
+        manga.description = li.match(/(?<=<span class="series-desc">).*?(?=<\/span>)/gm)[0].trim().replace(/<(\/|)(br|a|b|span)(\/|)>/gm, "").replace(/&nbsp;/gm, " ");
         manga.link = li.match(/(?<=\<a href=\").*?(?=" )/gm)[0].trim();
         manga.id = manga.link.replace(/.*\//gm, "");
         manga.chapters_count = li.match(/(?<=number of chapters">).*?(?=<\/span>)/gm)[0].trim();
