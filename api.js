@@ -64,11 +64,10 @@ function search(name) {
             });
 
             return_data.mangas = parseResults(response.body);
-
-            return return_data;
         } catch (error) {
             console.log(error.message);
         }
+        return return_data;
     })();
 }
 
