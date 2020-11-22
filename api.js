@@ -109,12 +109,21 @@ function getChapters(id, page) {
 
 
 async function getPages(release_id) {
-    var return_data = {"chapter_number": "", "images": []};
+    var return_data = {"chapter_number": "", "images": [], "next_chapter": {"number":"", "release_id":""}};
 
     const identifier = await (async () => {
         try {
             let response = await got(`https://mangalivre.net/ler/null/online/${release_id}/capitulo-0/`);
-            return_data.chapter_number = response.body.match(/(?<=var number = ").*(?=";)/gm)[0];
+            return_data.chapter_number = response.body.match(/(?<=var number = ").*(?=";)/gm)[0].trim();
+            let chapters = JSON.parse(response.body.match(/(?<=chapters = ).*?(?=;)/gm)[0].trim()).reverse();
+            for (const chapter of chapters) {
+                let chapter_index = chapters.indexOf(chapter);
+                if(chapter.number == return_data.chapter_number && chapter_index < chapters.length - 1){
+                    let next_chapter = chapters[chapter_index + 1];
+                    return_data.next_chapter.number = next_chapter.number;
+                    return_data.next_chapter.release_id = next_chapter.id_release;
+                }
+            }
             // retornando identifier
             return response.body.match(/(?<=this\.page\.identifier =\ \").*?(?=\";)/)[0];
         } catch (error) {

@@ -213,42 +213,29 @@ No exemplo, usarei o id_release de um capítulo retornado no exemplo do tópico 
 
 ```json
 {
-  "chapter_number":"13",
-  "images":[
-    "https://static2.mangalivre.com/cdnwp2/firefox/xKJEkyigOHoIhbC-aE27Yg/m3719902/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_00.jpg",
-    "https://static2.mangalivre.com/cdnwp2/firefox/ELVWqHpKmnqJoVb7pSZlfA/m3719903/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_01.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/7E1MDNWq0HuOLF-9gXIIPQ/m3719904/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_02.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/nS195Od7L3wobNuo6B_mJg/m3719905/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_03.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/EG5WgBKfVGIPFu1Okba1tQ/m3719906/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_04.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/vc5-QL35UOMeHd5VJ_WXKQ/m3719907/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_05.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/epKdxjg9q_mYrEfZpsZBCA/m3719908/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_06.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/4U4OzFOk-DjvJDzAOKEPwg/m3719909/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_07.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/9bu70-SJp8DVVbc8c04Qbg/m3719910/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_08.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/VLCaBUZiENXS5Cml61AClQ/m3719911/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_09.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/CSUOaSjyy4G0KkR1mwjOgg/m3719912/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_10.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/CxeSNFMpQKT7QD1Ud7ON3g/m3719913/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_11.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/8SoIsilimJN-7c0UVphVKw/m3719914/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_12.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/OhcWd7Mpy0yDvgxp5lX1fw/m3719915/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_13.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/KVYC_-nhj2ZibhF-NhC7rA/m3719916/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_14.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/BnxfhgkcEzNmurvCP7AvOg/m3719917/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_15.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/knlnZLbGDV3LV8y-VarXSw/m3719918/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_16.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/1BJtX_bNa5TezR1aN20NFw/m3719919/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_17.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/22A1wqCBLxyW4oGyMLT0CQ/m3719920/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_18.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/DzC1sseozev3uiIzPMEe0g/m3719921/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_19.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/6GDTg0DWnZYxLzrtJV13fQ/m3719922/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_20.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/R0XiTsM2AaoMH2_m5pnUeQ/m3719923/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_21.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/1suphyqrXahkvEp1JLwPyA/m3719924/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_22.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/J-pr723Pxz0Chy2l-kP_Lg/m3719925/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_23.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/hjJplt6j1zWripRqkTnOfw/m3719926/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_24.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/_gNscWaSfbtYpMO8lye62A/m3719927/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_25.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/MmKMVxZXoU5_tzyLHNOAkA/m3719928/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_26.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/u5lNTrlr7GGB1QQLHhshWQ/m3719929/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_27.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/XNtrF2ATpKYDwKUzZZyn1g/m3719930/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_28.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/C_poNY6j3ochI4ksohcigA/m3719931/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_29.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/0OcZSrMk6g2JeK7F3a3YBg/m3719932/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_30.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/viJ659TOkJs5TdHcVDhWYg/m3719933/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_31.png",
-    "https://static2.mangalivre.com/cdnwp2/firefox/GyLKWx_KHHPwa-KewyvT9A/m3719934/7203/155322/160961/-kts-scans-jumyou-wo-kaitotte-moratta_vol_03_cap_13_32.png"
-  ]
+  "chapter_number": "995",
+  "images": [
+    "https://static2.mangalivre.com/cdnwp2/firefox/1zn9ZBiVc5NQAkM5rMeogQ/m5823499/13/249495/259164/001.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/514-oFVUR-9cqx_Jlj2OYA/m5823500/13/249495/259164/002_a.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/LzVJfHf19Sbsl7Sw5X59Ew/m5823501/13/249495/259164/003.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/4_1oKWKeI3Z6K-kFAtom3A/m5823502/13/249495/259164/004-005.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/y8YnhtQWYCWUCm6wZCRIKQ/m5823503/13/249495/259164/006.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/pciE6vGEO0ZgTJwJzYlXcg/m5823504/13/249495/259164/007.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/KbsbIJVFLpOIFqiuPqkNrw/m5823505/13/249495/259164/008.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/IM5a8LEAgG5qN0Bp05S1ow/m5823506/13/249495/259164/009.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/o9YGIFcPZLzVoNCrLGIFRQ/m5823507/13/249495/259164/010.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/5p8G0K7wWo-zn8rgYSgNfA/m5823508/13/249495/259164/011.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/s6N-N6Jd42nkiEm9qwn7BQ/m5823509/13/249495/259164/012_a.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/VocakegM0reAai_NoOXRyQ/m5823510/13/249495/259164/013.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/iJ0iSCeyc0M0FxGgrdpJZw/m5823511/13/249495/259164/014.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/BvWr8pVihDXdT_EkFpZKHQ/m5823512/13/249495/259164/015.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/bXWsEENeGYfOUzxb07ZtAw/m5823513/13/249495/259164/016.png",
+    "https://static2.mangalivre.com/cdnwp2/firefox/VnevLi_nLa_Q8FKlKlW0Rw/m5823514/13/249495/259164/017.png"
+  ],
+  "next_chapter": {
+    "number": "996",
+    "release_id": 260665
+  }
 }
 ```
 </p>
