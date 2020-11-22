@@ -56,18 +56,37 @@ function parseResults(html) {
 
 function search(name) {
     var return_data = { "mangas": [] };
+    const form = "search=" + name;
     
     return (async () => {
         try {
-            let response = await got.get(
-                `https://mangalivre.net/series/index/nome/${name}?page=1`, {
+            let response = await got.post(
+                "https://mangalivre.net/lib/search/series.json", {
+                body: form,
+                headers: {
+                    "x-requested-with": "XMLHttpRequest",
+                    "content-type": "application/x-www-form-urlencoded",
+                },
             });
 
-            return_data.mangas = parseResults(response.body);
+            for (const serie of JSON.parse(response.body).series) {
+                return_data.mangas.push({
+                    "id_serie": serie.id_serie,
+                    "name": serie.name,
+                    "label": serie.label,
+                    "score": serie.score,
+                    "value": serie.value,
+                    "author": serie.author,
+                    "artist": serie.artist,
+                    "image": serie.cover,
+                    "categories": serie.categories.map((categorie) => { return { "name": categorie.name, "id_category": categorie.id_category }; }),
+                });
+            }
+
+            return return_data;
         } catch (error) {
             console.log(error.message);
         }
-        return return_data;
     })();
 }
 

@@ -41,19 +41,25 @@ No exemplo, irei buscar por "i sold".
 ### Response
 ```json
 {
-  "mangas":[
+  "mangas": [
     {
-      "name":"Jumyou wo Kaitotte Moratta. Ichinen ni Tsuki, Ichimanen de.",
-      "author":"Miaki, Sugaru &  Taguchi, Shouichi (Arte)",
-      "description":"Jumyou wo Kaitotte Moratta. Ichinen ni Tsuki, Ichimanen de.(\"Eu vendi minha vida p0 mil yene o ano\") é um mangá baseado no romance \"Três dias de felicidade\" de Miyaki Sugaru, e conta a história de Kusunoki, um jovem com poucas espectativas para o futuro, que com 20 anos chegou ao fundo do poço. Foi forçado a vender até mesmo seus CDs e livros para conseguir dinheiro, nesse dia ele descobre uma loja que compra o tempo de vida, o tempo e a saúde das pessoas. Essa é uma história do valor de uma vida, e das consequências de vendê-la.",
-      "link":"/manga/jumyou-wo-kaitotte-moratta-ichinen-ni-tsuki-ichimanen-de-/7203",
-      "id":"7203",
-      "chapters_count":"17",
-      "image":"https://static3.mangalivre.com/capas/F90r_Di84p1K4x75frSw8A/7203/external_cover.jpg?quality=100",
-      "score":"8.88",
-      "categories":[
-        "Drama",
-        "Shounen"
+      "id_serie": 7203,
+      "name": "Jumyou wo Kaitotte Moratta. Ichinen ni Tsuki, Ichimanen de.",
+      "label": "Jumyou wo Kaitotte Moratta. Ichinen ni Tsuki, Ichimanen de.",
+      "score": "8.88",
+      "value": "Jumyou wo Kaitotte Moratta. Ichinen ni Tsuki, Ichimanen de. Mikkakan no Koufuku;Three Days of Happiness;I sold my life for ten thousand yen per year.;寿命を買い取ってもらった。一年につき、一万円で。",
+      "author": "Miaki, Sugaru",
+      "artist": "Taguchi, Shouichi",
+      "image": "https://static3.mangalivre.com/capas/F90r_Di84p1K4x75frSw8A/7203/external_cover.jpg?quality=100",
+      "categories": [
+        {
+          "name": "Drama",
+          "id_category": 29
+        },
+        {
+          "name": "Shounen",
+          "id_category": 1
+        }
       ]
     }
   ]
