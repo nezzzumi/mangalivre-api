@@ -69,7 +69,12 @@ function search(name) {
                 },
             });
 
-            for (const serie of JSON.parse(response.body).series) {
+            // nenhum resultado
+            if (!JSON.parse(response.body).series){
+                return return_data;
+            }
+
+            for (let serie of JSON.parse(response.body).series) {
                 return_data.mangas.push({
                     "id_serie": serie.id_serie,
                     "name": serie.name,
