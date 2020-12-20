@@ -34,9 +34,9 @@ No exemplo, irei buscar por "i sold".
 
 
 ### Request
-`GET /search/:nome` para buscar mangás pelo nome.
+`GET /search/?q=:nome` para buscar mangás pelo nome.
 
-    curl "http://localhost:8080/search/i%20sold"
+    curl "http://localhost:8080/search/?q=i%20sold"
 
 ### Response
 ```json

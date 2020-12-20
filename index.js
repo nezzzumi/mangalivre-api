@@ -7,8 +7,8 @@ app.set("views", "./static/");
 app.use(express.static("./public/"))
 app.engine('html', require('ejs').renderFile);
 
-app.get("/search/:name", (req, res) => {
-    const name = req.params.name;
+app.get("/search/", (req, res) => {
+    const name = req.query.q;
     api.search(name).then((response) => {
         res.send(response);
     });
